@@ -1,0 +1,281 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodCheck</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f4f8f6;color:#153f38;font-family:Nunito,Arial,sans-serif}
+.nav{height:72px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 2px 15px #17463d12}
+.logo{font-size:21px;font-weight:900;color:#075d45;text-decoration:none}
+.logo span{font-size:29px;vertical-align:middle}
+.nav nav a{margin-left:28px;text-decoration:none;color:#315a53;font-size:13px;font-weight:800}
+.nav nav a:hover{color:#078653}
+.wrap{max-width:1180px;margin:auto}
+.hero{min-height:460px;padding:55px 5%;display:grid;grid-template-columns:1fr 1fr;align-items:center;background:linear-gradient(120deg,#fffef5,#edf8e9);overflow:hidden}
+.hero h1{font-size:clamp(43px,5vw,65px);line-height:.98;margin:8px 0 18px;color:#104d43}
+.hero p{max-width:560px;font-size:17px;line-height:1.55;color:#45655e}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.7px;font-weight:900;color:#078653}
+.btn{border:0;border-radius:28px;padding:13px 24px;font-weight:900;cursor:pointer;font-family:inherit}
+.primary{background:#078653;color:#fff}
+.btn:disabled{opacity:.6;cursor:wait}
+.hero-art{height:330px;position:relative;display:grid;place-items:center}
+.hero-art .apple{font-size:155px;filter:drop-shadow(0 16px 10px #0002)}
+.fruit{position:absolute;font-size:65px}
+.f1{left:10%;top:12%}.f2{right:7%;top:15%}.f3{right:3%;bottom:18%}.f4{left:18%;bottom:10%}.f5{left:31%;bottom:2%;font-size:38px}
+.tag{position:absolute;right:3%;top:0;color:#078653;font-weight:900;font-style:italic;transform:rotate(-8deg)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:18px 5%;max-width:1180px;margin:auto}
+.mini{background:#fff;border-radius:16px;padding:18px;display:flex;gap:13px;box-shadow:0 7px 20px #244b3c0b;border:1px solid #e4eee9}
+.mini i{font-style:normal;font-size:25px}
+.mini b{display:block}
+.mini p{margin:5px 0 0;color:#70827e;font-size:12px}
+.green b{color:#078653}.orange b{color:#df7111}.gray b{color:#405a62}
+.section{max-width:1180px;margin:35px auto;padding:55px 5%;background:#fff;border-radius:25px}
+.title{text-align:center;margin-bottom:32px}
+.title h2{font-size:36px;margin:6px 0;color:#143f38}
+.title p{color:#70827e}
+.analyze{display:grid;grid-template-columns:1.4fr .6fr;gap:25px}
+.camera{background:#f8fbf9;border:1px solid #e1ece7;padding:20px;border-radius:20px}
+.preview{height:350px;border-radius:16px;background:linear-gradient(145deg,#d4d1ca,#eee9df);display:grid;place-items:center;overflow:hidden;position:relative}
+.preview img,.preview video{width:100%;height:100%;object-fit:contain}
+.placeholder{text-align:center;color:#4d6861;padding:15px}
+.placeholder strong,.placeholder span{display:block}
+.placeholder strong{margin:8px}
+.placeholder span{font-size:12px}
+.cam-icon{font-size:52px}
+.actions{display:flex;gap:10px;margin-top:12px}
+.actions>*{flex:1;min-width:0}
+.tip{background:#edf8ef;border:1px solid #d7ebdb;border-radius:20px;padding:24px;color:#2d584d}
+.tip h3{color:#078653}
+.tip hr{border:0;border-top:1px solid #d6e8da;margin:22px 0}
+.wide{width:100%;margin-top:12px}
+.result{margin-top:25px;padding:25px;border-radius:20px;background:#eaf8ed;border:1px solid #cce8d4}
+.result.orange{background:#fff4e2;border-color:#f5ddb6}
+.result.gray{background:#edf2f4;border-color:#d7e1e4}
+.result-main{display:grid;grid-template-columns:200px 1fr;gap:25px;align-items:center}
+.result-photo{height:175px;border-radius:16px;background:#ddd;display:grid;place-items:center;font-size:90px;overflow:hidden}
+.result-photo img{width:100%;height:100%;object-fit:contain}
+.result h3{font-size:32px;margin:5px 0}
+.result p{color:#536e67;line-height:1.55;overflow-wrap:anywhere}
+.infos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.info{padding:14px;border-radius:12px;background:#ffffffaa}
+.info b,.info span{display:block}
+.info span{font-size:12px;color:#627872;margin-top:4px;overflow-wrap:anywhere}
+.hidden{display:none!important}
+.tips,.library{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.tipbox{border:1px solid #e2ece7;border-radius:16px;padding:20px;text-align:center}
+.tipbox span{font-size:31px}
+.tipbox h3{margin:8px 0}
+.tipbox p{font-size:12px;color:#70827e;line-height:1.5}
+.library{grid-template-columns:repeat(3,1fr)}
+.lib{border:0;border-radius:16px;padding:22px;background:#f0faf1;font-family:inherit;font-size:30px}
+.lib b,.lib small{display:block}
+.lib b{font-size:15px;margin-top:6px}
+.lib small{font-size:11px;color:#078653}
+.progress{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}
+.panel{border:1px solid #e3ece8;border-radius:18px;padding:20px;min-width:0}
+.row{display:grid;grid-template-columns:35px 1fr auto;gap:10px;padding:13px 0;border-top:1px solid #edf1ef;align-items:center}
+.row:first-of-type{border-top:0}
+.pill{padding:5px 9px;border-radius:20px;font-size:10px;font-weight:900}
+.pgreen{background:#e3f6e7;color:#078653}
+.porange{background:#fff0d9;color:#df7111}
+.pgray{background:#e9eef0;color:#405a62}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.stat{text-align:center;background:#f7faf8;padding:10px 3px;border-radius:11px}
+.stat span{font-size:23px;display:block}
+.stat b{display:block}
+.stat small{font-size:9px;color:#71817c}
+.about{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.about h2{font-size:38px}
+.about p{color:#667b75;line-height:1.6;max-width:700px}
+.heart{width:180px;height:180px;flex-shrink:0;border-radius:50%;background:#d9f2d5;display:grid;place-items:center;text-align:center;color:#078653;font-weight:900}
+footer{background:#073f35;color:#dff2e9;padding:30px 5%;display:flex;justify-content:space-between;font-size:12px}
+.menu{display:none}
+@media(max-width:850px){
+.nav nav{display:none}
+.menu{display:block;border:0;background:none;font-size:25px;cursor:pointer}
+.hero{grid-template-columns:1fr}
+.hero-art{height:250px}
+.cards,.analyze,.progress{grid-template-columns:1fr}
+.tips{grid-template-columns:1fr 1fr}
+.library{grid-template-columns:1fr 1fr}
+.about{flex-direction:column}
+.result-main{grid-template-columns:1fr}
+.infos{grid-template-columns:1fr}
+footer{flex-direction:column;gap:10px}
+}
+@media(max-width:550px){
+.tips,.library{grid-template-columns:1fr}
+.hero{padding-top:35px}
+.hero h1{font-size:43px}
+.section{margin:20px 12px;padding:38px 18px}
+.cards{padding:12px}
+.actions{flex-direction:column}
+.stats{grid-template-columns:repeat(3,1fr)}
+.result{padding:15px}
+}
+</style>
+</head>
+
+<body>
+<header class="nav">
+  <a class="logo" href="#inicio"><span>🍎</span> FoodCheck</a>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#analizar">Analizar</a>
+    <a href="#consejos">Consejos</a>
+    <a href="#progreso">Mi progreso</a>
+    <a href="#nosotros">Sobre nosotros</a>
+  </nav>
+  <button class="menu" aria-label="Abrir menú">☰</button>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div>
+    <div class="eyebrow">🥗 Alimentación inteligente</div>
+    <h1>Descubre qué hay<br>en tu plato</h1>
+    <p>Usa la inteligencia artificial para clasificar tus alimentos y aprender sobre tus hábitos de alimentación.</p>
+    <button class="btn primary" onclick="location.hash='analizar'">📷 &nbsp; Analizar alimento</button>
+  </div>
+  <div class="hero-art">
+    <div class="tag">¡Comer bien también es una decisión inteligente!</div>
+    <div class="fruit f1">🥦</div>
+    <div class="fruit f2">🍌</div>
+    <div class="fruit f3">🍅</div>
+    <div class="fruit f4">🥕</div>
+    <div class="fruit f5">🫐</div>
+    <div class="apple">🍎</div>
+  </div>
+</section>
+
+<div class="cards">
+  <div class="mini green"><i>🍃</i><div><b>Opción más nutritiva</b><p>Frutas, verduras, legumbres y más.</p></div></div>
+  <div class="mini orange"><i>⚠️</i><div><b>Consumo ocasional</b><p>Dulces, frituras, gaseosas y más.</p></div></div>
+  <div class="mini gray"><i>⊘</i><div><b>No es alimento</b><p>Objetos que no son comida.</p></div></div>
+</div>
+
+<section id="analizar" class="section">
+  <div class="title">
+    <div class="eyebrow">📷 Análisis con IA</div>
+    <h2>Analiza tu alimento</h2>
+    <p>Coloca el alimento frente a la cámara o sube una fotografía.</p>
+  </div>
+
+  <div class="analyze">
+    <div class="camera">
+      <div class="preview">
+        <div id="placeholder" class="placeholder">
+          <div class="cam-icon">📷</div>
+          <strong>Tu alimento aparecerá aquí</strong>
+          <span>Usa una imagen clara y bien iluminada.</span>
+        </div>
+        <img id="photo" hidden alt="Imagen del alimento">
+        <video id="video" hidden autoplay playsinline></video>
+      </div>
+
+      <div class="actions">
+        <label class="btn" style="background:#e5f6ed;color:#08784c;text-align:center;cursor:pointer">
+          📁 Subir foto
+          <input id="file" hidden type="file" accept="image/*">
+        </label>
+        <button id="camera" class="btn primary">📷 Cámara</button>
+        <button id="capture" class="btn" style="background:#234b52;color:#fff" hidden>Capturar</button>
+      </div>
+
+      <button id="analyze" class="btn primary wide">✨ Analizar imagen</button>
+      <p id="status" role="status" aria-live="polite" style="text-align:center;color:#078653;font-weight:800;min-height:20px">Preparando inteligencia artificial...</p>
+      <div id="result" class="result hidden"></div>
+    </div>
+
+    <aside class="tip">
+      <h3>💡 Consejo</h3>
+      <p>Asegúrate de que el alimento esté bien iluminado y se vea completo en la imagen.</p>
+      <hr>
+      <b>¿Cómo funciona?</b>
+      <p style="font-size:12px;color:#71827e">FoodCheck analiza la imagen con un modelo de inteligencia artificial entrenado para reconocer tres categorías.</p>
+      <p style="font-size:12px;color:#71827e">El resultado depende de las imágenes y ejemplos utilizados durante el entrenamiento.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="consejos" class="section">
+  <div class="title">
+    <div class="eyebrow">🌱 Aprende</div>
+    <h2>Consejos para una alimentación saludable</h2>
+    <p>Pequeños cambios hacen una gran diferencia.</p>
+  </div>
+  <div class="tips">
+    <article class="tipbox"><span>🥗</span><h3>Incluye variedad</h3><p>Agrega frutas y verduras a tus comidas.</p></article>
+    <article class="tipbox"><span>🌿</span><h3>Prefiere alimentos frescos</h3><p>Elige alimentos naturales y variados.</p></article>
+    <article class="tipbox"><span>🍞</span><h3>Modera el consumo</h3><p>Procura mantener un equilibrio en tus hábitos.</p></article>
+    <article class="tipbox"><span>💧</span><h3>Mantente hidratado</h3><p>Toma agua durante el día.</p></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="title">
+    <div class="eyebrow">📚 Explora</div>
+    <h2>Biblioteca de alimentos</h2>
+    <p>Conoce diferentes grupos de alimentos.</p>
+  </div>
+  <div class="library">
+    <div class="lib">🍎🍌<b>Frutas</b><small>Grupo de alimentos</small></div>
+    <div class="lib">🥦🥕<b>Verduras</b><small>Grupo de alimentos</small></div>
+    <div class="lib">🌾🍞<b>Cereales</b><small>Grupo de alimentos</small></div>
+    <div class="lib">🥚🫘<b>Proteínas</b><small>Grupo de alimentos</small></div>
+    <div class="lib">🥛🧀<b>Lácteos</b><small>Grupo de alimentos</small></div>
+    <div class="lib">🍪🍩<b>Snacks y dulces</b><small>Consumo ocasional</small></div>
+  </div>
+</section>
+
+<section id="progreso" class="section">
+  <div class="title">
+    <div class="eyebrow">📈 Seguimiento</div>
+    <h2>Mi progreso</h2>
+    <p>Aquí aparecerán los análisis realizados durante esta sesión.</p>
+  </div>
+
+  <div class="progress">
+    <div class="panel">
+      <h3>Últimos análisis</h3>
+      <div id="history-list">
+        <p>Todavía no has analizado alimentos.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Acerca de los resultados</h3>
+      <p style="color:#70827e;font-size:14px;line-height:1.6">Los resultados se añaden después de analizar una imagen con la IA. El historial de esta versión se reinicia al recargar la página.</p>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" class="section about">
+  <div>
+    <div class="eyebrow">💚 FoodCheck</div>
+    <h2>Comer bien, aprender siempre.</h2>
+    <p>FoodCheck es una interfaz educativa para reconocer imágenes de alimentos mediante inteligencia artificial y aprender sobre hábitos saludables.</p>
+  </div>
+  <div class="heart">❤️<br>Aprende hoy,<br>elige con información.</div>
+</section>
+</main>
+
+<footer>
+  <b>🍎 FoodCheck</b>
+  <span>Comer bien, aprender siempre. · © 2026</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.4/dist/teachablemachine-image.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
